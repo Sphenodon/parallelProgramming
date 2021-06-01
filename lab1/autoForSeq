@@ -1,0 +1,33 @@
+#!/bin/bash
+
+testCount=100
+n=700
+delta=1230
+
+dest="delta_ms_for_seq.csv"
+touch $dest
+cat /dev/null > $dest
+command="./lab1-seq"
+
+for (( count=$testCount; count>0; count-- ))
+do
+for i in {0..10}
+do
+    let "x =$n + $delta * $i"
+    echo -e `$command $x` >> $dest
+done
+done
+
+dest="delta_ms_for_seq_clang.csv"
+touch $dest
+cat /dev/null > $dest
+command="./lab1-seq-clang"
+
+for (( count=$testCount; count>0; count-- ))
+do
+for i in {0..10}
+do
+    let "x =$n + $delta * $i"
+    echo -e `$command $x` >> $dest
+done
+done
