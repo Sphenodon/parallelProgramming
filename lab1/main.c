@@ -91,7 +91,6 @@ int main(int argc, char * argv[]) {
 
         ///Reduce
         /// This code reduces
-        /// @param result a value that should be returned as result of this function
         double minNonZero = __DBL_MAX__;
         for (size_t j = 0; j < lengthSecondArray; j++) {
             double value = secondArray[j];
