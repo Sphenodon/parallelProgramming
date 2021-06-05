@@ -1,15 +1,15 @@
 #!/bin/bash
 
-testCount=100
+testCount=20
 n=700
 delta=1230
 
-for i in 1 2 4 8
+for thr in 1 2 4 8
 do
-dest="delta_ms_for_par$i.csv"
+dest="delta_ms_for_par_gcc$thr.csv"
 touch $dest
 cat /dev/null > $dest
-command="./lab1-par-$i"
+command="./lab1-par-$thr"
    for (( count=$testCount; count>0; count-- ))
    do
        for i in {0..10}
@@ -20,7 +20,7 @@ command="./lab1-par-$i"
    done
 done
 
-dest="delta_ms_for_par_clang.csv"
+dest="delta_ms_for_clang_with_vectorization.csv"
 touch $dest
 cat /dev/null > $dest
 command="./lab1-par-clang"
@@ -32,4 +32,17 @@ do
     let "x =$n + $delta * $i"
     echo -e `$command $x` >> $dest
 done
+done
+
+dest="delta_ms_for_par_icc.csv"
+touch $dest
+cat /dev/null > $dest
+command="./lab1_icc_par"
+for (( count=$testCount; count>0; count-- ))
+do
+    for i in {0..10}
+    do
+        let "x = $n + $delta * $i"
+        echo -e `$command $x` >> $dest
+    done
 done

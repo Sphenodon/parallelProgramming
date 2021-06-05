@@ -7,3 +7,6 @@ done
 
 clang -O3 -Wall -Werror -o lab1-seq-clang  main.c -lm -fno-slp-vectorize
 clang -O3 -Wall -Werror -o lab1-par-clang  main.c -lm -ftree-slp-vectorize
+
+source /opt/intel/oneapi/setvars.sh intel64
+icc -O3 -Wall -Werror -o lab1_icc_par main.c -parallel -qopt-report-phase=par -par-threshold90 -static -lippi -lipps -lippcore -lippvm -lippcore -lm

@@ -1,0 +1,50 @@
+#!/bin/bash
+
+testCount=20
+n=700
+delta=1230
+
+for thr in 1
+do
+dest="delta_ms_intel_$thr.csv"
+touch $dest
+cat /dev/null > $dest
+command="./lab2_intel"
+   for (( count=$testCount; count>0; count-- ))
+   do
+       for i in {0..10}
+       do
+           let "x = $n + $delta * $i"
+           echo -e `$command $x $thr` >> $dest
+       done
+   done
+done
+
+for thr in 1
+do
+dest="delta_ms_clang_$thr.csv"
+touch $dest
+cat /dev/null > $dest
+command="./lab2_clang"
+   for (( count=$testCount; count>0; count-- ))
+   do
+       for i in {0..10}
+       do
+           let "x = $n + $delta * $i"
+           echo -e `$command $x $thr` >> $dest
+       done
+   done
+done
+
+dest="delta_ms_icc_par.csv"
+touch $dest
+cat /dev/null > $dest
+command="./lab2_icc_par"
+for (( count=$testCount; count>0; count-- ))
+do
+    for i in {0..10}
+    do
+        let "x = $n + $delta * $i"
+        echo -e `$command $x` >> $dest
+    done
+done

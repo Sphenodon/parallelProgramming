@@ -1,0 +1,6 @@
+#!/bin/bash
+IPPROOT=~/intel/oneapi/ipp/latest
+source ~/intel/oneapi/setvars.sh intel64
+icx -O3 -Wall -Werror -o lab2_clang  main.c -I $IPPROOT/include -L $IPPROOT/lib/intel64/tl/tbb/ -static -lippi_tl_tbb -lipps -lippcore_tl_tbb -lippvm -lippcore -lm
+icc -O3 -Wall -Werror -o lab2_intel  main.c -I $IPPROOT/include -L $IPPROOT/lib/intel64/tl/tbb/ -static -lippi_tl_tbb -lipps -lippcore_tl_tbb -lippvm -lippcore -lm
+icc -O3 -Wall -Werror -o lab2_icc_par main_par_icc.c -parallel -qopt-report-phase=par -par-threshold90 -static -lippi -lipps -lippcore -lippvm -lippcore -lm

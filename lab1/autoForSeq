@@ -1,6 +1,6 @@
 #!/bin/bash
 
-testCount=100
+testCount=20
 n=700
 delta=1230
 
@@ -18,7 +18,7 @@ do
 done
 done
 
-dest="delta_ms_for_seq_clang.csv"
+dest="delta_ms_for_clang_no_vectorization.csv"
 touch $dest
 cat /dev/null > $dest
 command="./lab1-seq-clang"
