@@ -1,0 +1,5 @@
+#!/bin/bash
+gcc -O3 -Werror -o lab3 main_static.c -lm
+gcc -O3 -Werror -o lab3_omp_static main_static.c -lm -fopenmp
+gcc -O3 -Werror -o lab3_omp_dynamic main_dynamic.c -lm -fopenmp
+gcc -O3 -Werror -o lab3_omp_guided main_guided.c -lm -fopenmp

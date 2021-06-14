@@ -1,0 +1,27 @@
+#!/bin/bash
+
+testCount=10
+n=700
+delta=1230
+chunk=$1
+
+mkdir delta_ms_images
+
+for schedule in static dynamic guided
+do
+    for thr in 1 2 4 8
+    do
+        dest="delta_ms_images/delta_ms_for_"$thr"thread_"$schedule"_"$chunk"chunk.csv"
+        touch $dest
+        cat /dev/null > $dest
+        command="./lab3_omp_$schedule"
+        for (( count=$testCount; count>0; count-- ))
+        do
+            for i in {0..10}
+            do
+               let "length = $n + $delta * $i"
+               echo -e `$command $length $thr $chunk` >> $dest
+            done
+        done
+    done
+done
