@@ -1,0 +1,3 @@
+#!/bin/bash
+gcc -O3 -Werror -o lab4 main_guided.c -lm
+gcc -O3 -Werror -o lab4_omp_guided main_guided.c -lm -fopenmp

@@ -1,0 +1,40 @@
+#!/bin/bash
+
+testCount=10
+n=10
+delta=1299
+chunk=$1
+
+mkdir delta_ms_images
+
+for schedule in guided
+do
+    for thr in 2 4 8
+    do
+        dest="delta_ms_images/delta_ms_for_"$thr"thread_"$schedule"_"$chunk"chunk.csv"
+        touch $dest
+        cat /dev/null > $dest
+        command="./lab4_omp_$schedule"
+        for (( count=$testCount; count>0; count-- ))
+        do
+            for i in {0..10}
+            do
+               let "length = $n + $delta * $i"
+               echo -e `$command $length $thr $chunk` >> $dest
+            done
+        done
+    done
+done
+
+dest="delta_ms_images/delta_ms_for_seq.csv"
+touch $dest
+cat /dev/null > $dest
+command="./lab4"
+for (( count=$testCount; count>0; count-- ))
+do
+    for i in {0..10}
+    do
+       let "length = $n + $delta * $i"
+       echo -e `$command $length $thr $chunk` >> $dest
+    done
+done

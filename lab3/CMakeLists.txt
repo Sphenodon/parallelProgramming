@@ -5,7 +5,7 @@ project(lab3 C)
 
 set(CMAKE_C_STANDARD 11)
 
-add_executable(main_static.c)
+add_executable(lab3 main_static.c)
 target_link_libraries(lab3 m)
 
 #if(OpenMP_C_FOUND)
