@@ -246,7 +246,7 @@ void do_main(int argc, char *argv[], int *status){
 
 int main(int argc, char* argv[]) {
     const size_t length = atol(argv[1]);
-    const unsigned threadCount = atol(argv[2])?:1;
+//    const unsigned threadCount = atol(argv[2])?:1;
     int status = 0;
 
     omp_set_nested(1);
@@ -256,7 +256,7 @@ int main(int argc, char* argv[]) {
     }
 
     #if defined(_OPENMP)
-    #pragma omp parallel sections shared(status) num_threads(threadCount)
+    #pragma omp parallel sections shared(status) num_threads(2)
 	{
 		#pragma omp section
         {
